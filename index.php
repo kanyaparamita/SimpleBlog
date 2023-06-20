@@ -50,7 +50,7 @@
         $post_tanggal = mysqli_real_escape_string($con,$_POST['Tanggal']);
         $post_konten = mysqli_real_escape_string($con,$_POST['Konten']);
         
-        // menyambungkan dengan keterangan edit post yang ada di url
+        // Connecting with the post edit description in the url
         $isModif = $_GET['modif'];
         $idPostModif = $_GET['id'];
         if ($isModif) {
@@ -112,7 +112,7 @@
 
 <script>
   function delFunc(idPostDel) {
-    if (confirm ("Apakah Anda yakin postingan ini dihapus?") == true) {
+    if (confirm ("Are you sure you want this post to be deleted?") == true) {
       location.href = "deletepost.php?idDelete="+idPostDel;
     }
   }
