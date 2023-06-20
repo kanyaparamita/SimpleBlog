@@ -29,7 +29,7 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
 
-<title>Simple Blog | Tambah Post</title>
+<title>Simple Blog | Post Editor</title>
 
 
 </head>
@@ -45,7 +45,8 @@
         echo "Failed to connect to mySQL";
     }
 
-    $post_modif = false;
+    $idPost = 0;
+    $post_modif = "false";
     $post_judul = "";
     $post_tanggal = "";
     $post_konten = "";
@@ -57,7 +58,7 @@
         $post_judul = $singlePost['post_judul'];
         $post_tanggal = $singlePost['post_tanggal'];
         $post_konten = $singlePost['post_konten'];
-        $post_modif = true;
+        $post_modif = "true";
     }
 
 ?>
@@ -65,7 +66,7 @@
 <nav class="nav">
     <a style="border:none;" id="logo" href="index.php"><img src="assets/img/logo.png"></a>
     <ul class="nav-primary">
-        <li><a href="new_post.php">+ Tambah Post</a></li>
+        <li><a href="new_post.php" style="padding-left: 10px;">+ New Post</a></li>
     </ul>
 </nav>
 
@@ -76,21 +77,21 @@
 
     <div class="art-body">
         <div class="art-body-inner">
-            <h6>Tambah Post</h6>
+            <h6>Add Post</h6>
 
             <div id="contact-area">
                 <form method="post" action="index.php?id=<?=$idPost;?>&modif=<?=$post_modif;?>" onsubmit="return validasiTanggal();"
                         name="formPost">
-                    <label for="Judul">Judul:</label>
+                    <label for="Judul">Title:</label>
                     <input type="text" name="Judul" id="Judul" required value = "<?php echo $post_judul; ?>" >
 
-                    <label for="Tanggal">Tanggal:</label>
+                    <label for="Tanggal">Date:</label>
                     <input type="Date" name="Tanggal" id="Tanggal" required value = <?php echo $post_tanggal; ?>>
                     
-                    <label for="Konten">Konten:</label><br>
+                    <label for="Konten">Content:</label><br>
                     <textarea name="Konten" rows="20" cols="20" id="Konten" required><?php echo $post_konten; ?></textarea>
 
-                    <input type="submit" name="submit" value="Simpan" class="submit-button">
+                    <input type="submit" name="submit" value="Submit Post" class="submit-button">
                 </form>
             </div>
         </div>
@@ -105,6 +106,7 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="assets/js/fittext.js"></script>
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/respond.min.js"></script>

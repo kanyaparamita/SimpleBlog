@@ -56,7 +56,7 @@
 <nav class="nav">
     <a style="border:none;" id="logo" href="index.php"><img src="assets/img/logo.png"></a>
     <ul class="nav-primary">
-        <li><a href="new_post.php">+ Tambah Post</a></li>
+        <li><a href="new_post.php" style="padding-left: 10px;">+ New Post</a></li>
     </ul>
 </nav>
 
@@ -66,33 +66,33 @@
         <div class="art-header-inner" style="margin-top: 0px; opacity: 1;">
             <time class="art-time"><?php echo $singlePost['post_tanggal']; ?></time>
             <h2 class="art-title"><?php echo $singlePost['post_judul']; ?></h2>
-            <p class="art-subtitle"></p>
+            <!-- <p class="art-subtitle"></p> -->
         </div>
     </header>
 
     <div class="art-body">
         <div class="art-body-inner">
-            <hr class="featured-article" />
+            <!-- <hr class="featured-article" /> -->
             <p><?php echo $singlePost['post_konten']; ?></p>
 
             <hr />
             
-            <h2>Komentar</h2>
+            <h2>Comment</h2>
 
             <div id="contact-area">
                 <form method="post" id="formKomen" onsubmit="validasiEmail(); return false">
                     <input type="hidden" name="IDPost" id="IDPost" value="<?php echo $singlePost['post_id']?>">
                     
-                    <label for="Nama">Nama:</label>
+                    <label for="Nama">Name:</label>
                     <input type="text" name="Nama" id="Nama">
         
                     <label for="Email">Email:</label>
                     <input type="text" name="Email" id="Email">
                     
-                    <label for="Komentar">Komentar:</label><br>
+                    <label for="Komentar">Comment:</label><br>
                     <textarea name="Komentar" rows="20" cols="20" id="Komentar"></textarea>
 
-                    <input type="submit" name="submit" value="Kirim" class="submit-button">
+                    <input type="submit" name="submit" value="Send" class="submit-button">
                 </form>
             </div>
 
@@ -172,6 +172,7 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/respond.min.js"></script>
 <script type="text/javascript">

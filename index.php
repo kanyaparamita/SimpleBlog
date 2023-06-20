@@ -49,21 +49,50 @@
         $post_judul = mysqli_real_escape_string($con,$_POST['Judul']);
         $post_tanggal = mysqli_real_escape_string($con,$_POST['Tanggal']);
         $post_konten = mysqli_real_escape_string($con,$_POST['Konten']);
+
+        function debug_to_console($data) {
+            $output = $data;
+            if (is_array($output))
+                $output = implode(',', $output);
+            
+            $output = str_replace("'", "\\'", $output); // Escape single quotes in the output
+        
+            echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+        }
         
         // Connecting with the post edit description in the url
-        $isModif = $_GET['modif'];
+        $isModif = $_GET['modif'] == 'true' ? true : false;
+        // $isModif = false;
+        debug_to_console($isModif);
         $idPostModif = $_GET['id'];
+        $post_query = "";
+
         if ($isModif) {
+          print "Here ($)isModif is true";
+          debug_to_console("Here ($)isModif is true");
           $post_query = "UPDATE post SET post_judul = '$post_judul', post_tanggal = '$post_tanggal',
                         post_konten = '$post_konten' WHERE post_id = '$idPostModif'";
         } else {
-          $post_query = "INSERT INTO post (post_judul, post_tanggal, post_konten)
-                  VALUES ('$post_judul', '$post_tanggal','$post_konten')";
+          debug_to_console("Here ($)isModif is false");
+          $post_query = "INSERT INTO post (post_judul, post_tanggal, post_konten) VALUES ('$post_judul', '$post_tanggal','$post_konten')";
         }
 
-        if (!mysqli_query ($con, $post_query)) {
-            die('Error: ' . mysqli_error($con));
+        // debug_to_console($post_query);
+
+        // Execute the query
+        try {
+          mysqli_query($con, $post_query);
+        } catch (Exception $e) {
+          // $exceptionMessage = "Caught exception: " . $e->getMessage() . "\n";
+          debug_to_console($e->getMessage());
         }
+
+        // if (mysqli_query($con, $post_query)) {
+        //   debug_to_console("Query executed successfully.");
+        // } else {
+        //   debug_to_console("Error executing query: ");
+        //   debug_to_console(mysqli_error($con));
+        // }
     }
 
     $listPost = mysqli_query ($con, "SELECT * FROM post ORDER BY post_tanggal DESC");
@@ -73,7 +102,7 @@
 <nav class="nav">
     <a style="border:none;" id="logo" href="index.php"><img src="assets/img/logo.png"></a>
     <ul class="nav-primary">
-        <li><a href="new_post.php">+ Tambah Post</a></li>
+        <li><a href="new_post.php" style="padding-left: 10px;">+ New Post</a></li>
     </ul>
 </nav>
 
@@ -89,7 +118,7 @@
                   <div class="art-list-item-title-and-time">
                       <div class="art-list-time">
                         <?php echo $singlePost['post_tanggal']; ?>
-                        <span style="color:#F40034;">&#10029;</span> Featured</div>
+                        <span style="color:#F40034;"></span></div>
                   </div>
                   <p class="isi"><?php
                       if (strlen($singlePost['post_konten']) > 500) {
@@ -101,7 +130,7 @@
                       }
                     ?>
                     <br/>
-                    <a href="new_post.php?id=<?=$singlePost['post_id'];?>">Edit</a> | <a href="#" onclick="delFunc(<?php echo $singlePost['post_id']; ?>)">Hapus</a>
+                    <a href="new_post.php?id=<?=$singlePost['post_id'];?>">Edit</a> | <a href="#" onclick="delFunc(<?php echo $singlePost['post_id']; ?>)">Delete</a>
                   </p>
               </li>
             <?php } ?>
@@ -125,6 +154,7 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="assets/js/fittext.js"></script>
 <script type="text/javascript" src="assets/js/app.js"></script>
 <script type="text/javascript" src="assets/js/respond.min.js"></script>

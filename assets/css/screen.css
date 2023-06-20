@@ -51,7 +51,7 @@ h1 {
 
 h2 {
   font-size: 45px;
-  padding-bottom: 25px;
+  padding-top: 40px;
 }
 
 h3 {
@@ -314,7 +314,7 @@ div.cover > img {
 }
 /* Header */
 .art-header {
-  height: 500px;
+  height: 200px;
   /* Background image is defined in the post */
   background-position: top center;
   background-attachment: fixed;
@@ -338,10 +338,9 @@ div.cover > img {
   font-size: 14px;
   line-height: 1.8;
   letter-spacing: 4px;
-  padding-top: 10%;
 }
 .art-title {
-  font-size: 100px;
+  font-size: 80px;
   line-height: .9;
   letter-spacing: -2px;
   width: 100%;
@@ -375,7 +374,7 @@ div.cover > img {
 }
 .art-body-inner {
   font-family: Georgia,Cambria,"Times New Roman",Times,serif;
-  max-width: 640px;
+  max-width: 840px;
   padding: 80px 0 50px;
   letter-spacing: 0.01rem;
   font-weight: 400;
@@ -991,8 +990,6 @@ label {
   width: 100px;
   padding-top: 5px;
 }
-
-/* TAMBAHAN SENDIRI */
 
 .background {
   position: fixed;
